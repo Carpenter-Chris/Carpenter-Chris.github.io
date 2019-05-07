@@ -32,7 +32,7 @@ function roll() {
 	var howMany = parseFloat(document.getElementById("howManyInput").value);
 	<!-- set a variable for the function returns -->
 	var display = numberOf(sides, howMany);
-	var rollTotal = total(display);
+	var rollTotal = total(display, sides, howMany);
 	<!-- takes the results of the functions and displays them in a div for the user to see -->
 	document.getElementById("rollResults").innerHTML = "Roll results: " + display;
 	document.getElementById("rollTotalOutput").innerHTML = "Total: " + rollTotal;
@@ -48,13 +48,21 @@ function numberOf(sides, howMany) {
 }
 
 <!-- takes the array with randomly generated numbers and adds them together to get a total -->
-function total(display) {
+function total(display, sides, howMany) {
 	var rollAdd = 0;
 	
 	for ( i = 0; i < display.length; i++) {
 		rollAdd = rollAdd + display[i];
 	}
+	if (rollAdd == sides * howMany){
+		return rollAdd + ", Max roll! congradulations!";
+	}
+	else if (rollAdd == ((sides + 1) - sides) * howMany) {
+		return rollAdd + ", Lowest possible roll?! Better luck next time."
+	}
+	else {
 	return rollAdd;
+	}
 }
 
 </script>

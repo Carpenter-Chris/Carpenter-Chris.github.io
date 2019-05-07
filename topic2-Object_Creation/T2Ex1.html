@@ -1,39 +1,69 @@
 <!DOCTYPE html>
-
-
-
 <html lang="en">
-
-
 <head>
-
-
-<title> </title>
-
-
+<title>Topic 2 - JavaScript Objects - Object Creation Functions, Inheritance, Properties, Methods, Instantiation - example 1</title>
 <meta charset="utf-8">
 <meta name="author" content=" ">
 <meta name="description" content=" ">
 <meta name="keywords" content=" ">
 
-
 <style type="text/css">
 
-
-
 </style>
+<script>
 
+function file() {
+var name = ["image", "video", "video"];
+var size = ["316 KB", "2.3 MB", "16.7 MB"];
+var fileType = ["jpg", "mp4", "mp4"];
+var date = ["May 4th, 2019", "August 23, 2018", " December 25, 2015"];
+var length = ["00:3:02", "00:11:37"];
+var userInput = parseFloat(document.getElementById("fileInput").value);
 
+    class Media {
+        constructor(name, size, fileType, date) {
+         this.name = name;
+         this.size = size;
+	     this.fileType = fileType;
+	     this.date = date;
+        }
+
+        toString() {
+            return "This is a " + this.fileType + " " + this.name + " file. It's size is " + this.size + " and was created on " + this.date + ".";
+        }
+    }
+    class Video extends Media {
+        constructor(length) {
+            super();
+            this.length = length;
+        }
+
+        toString() {
+            return "This is a " + this.fileType + " " + this.name + " file. It's size is " + this.size + ", " + this.length + " and was created on " + this.date + ".";
+        }
+    }
+
+let pic1 = new Media(name[userInput - 1], size[userInput - 1], fileType[userInput - 1], date[userInput - 1]);
+let vid1 = new Video(name[userInput - 1], size[userInput - 1], fileType[userInput - 1], date[userInput - 1], length[userInput - 2]);
+
+document.getElementById("fileOutput").innerHTML = pic1.toString();  
+}
+
+</script>
 </head>
-
-
 <body>
 
-
-
+     <h2>please select the desired file by entering its coresponding number:</h2> 
+     <p>
+    -05042019_001.jpg -  1 <br>
+    -08232018_023.mp4 -  2 <br>
+    -Christmas2015.mp4 - 3 <br>
+ </p>
+                
+<input type="text" id="fileInput" size="5"><br>
+<button type="button" onclick="file()">File info</button>
+<div id="fileOutput"> </div>
 
 </body>
-
-
 
 </html>
