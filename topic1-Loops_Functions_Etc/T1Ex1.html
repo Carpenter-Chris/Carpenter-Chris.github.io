@@ -27,18 +27,18 @@ roll dice script
 <script>
 
 function roll() {
-	<!-- set variables for user inputs -->
+	//set variables for user inputs
 	var sides = parseFloat(document.getElementById("sidesInput").value);
 	var howMany = parseFloat(document.getElementById("howManyInput").value);
-	<!-- set a variable for the function returns -->
+	// set a variable for the function returns 
 	var display = numberOf(sides, howMany);
 	var rollTotal = total(display, sides, howMany);
-	<!-- takes the results of the functions and displays them in a div for the user to see -->
+	// takes the results of the functions and displays them in a div for the user to see 
 	document.getElementById("rollResults").innerHTML = "Roll results: " + display;
 	document.getElementById("rollTotalOutput").innerHTML = "Total: " + rollTotal;
 	}
 
-<!-- parameterized function that uses a loop to generates random numbers based on user input and adds each one into an array -->
+//parameterized function that uses a loop to generates random numbers based on user input and adds each one into an array
 function numberOf(sides, howMany) {
 	var rolls = [];
 		for (i = 0; i < howMany; i++) {
@@ -47,7 +47,7 @@ function numberOf(sides, howMany) {
 	return rolls;
 }
 
-<!-- takes the array with randomly generated numbers and adds them together to get a total -->
+// takes the array with randomly generated numbers and adds them together to get a total
 function total(display, sides, howMany) {
 	var rollAdd = 0;
 	
@@ -68,8 +68,8 @@ function total(display, sides, howMany) {
 </script>
 </head>
 <body>
-
-<p1> Dice roller </p1> 
+<!-- this code contains a "for" loop, conditional "if" statements, functions, variables, parameters, and an array. -->
+<h1> Dice roller </h1> 
 
 Number of sides (4, 6, 8, 10, 12, 20, 100):   
 <input type="text" id="sidesInput" size="5"><br>
@@ -78,7 +78,8 @@ how many dice:
 <button type="button" onclick="roll()">Roll!</button>
 <div id="rollResults"></div>
 <div id="rollTotalOutput"></div>
-
+<br>
+<a href="https://carpenter-chris.github.io/">Back</a>
 </body>
 
 </html>

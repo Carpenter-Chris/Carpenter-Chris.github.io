@@ -1,37 +1,116 @@
 <!DOCTYPE html>
 
-
-
 <html lang="en">
-
-
 <head>
-
-
 <title> </title>
-
-
 <meta charset="utf-8">
 <meta name="author" content=" ">
 <meta name="description" content=" ">
 <meta name="keywords" content=" ">
 
-
 <style type="text/css">
 
+span {
+    font-weight: bold;
+    font-size:30pt;
+}
 
+#myContainer {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: green;
+}
+#myAnimation {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color:black;
+}
 
 </style>
+<script>
+//example 1
+function leftColorQ() {
+    var leftQ = document.getElementById("pinkQ");
+        leftQ.style.color = 'pink';       
+}
+
+function black() {
+    var lblackQ = document.getElementById("pinkQ");
+    lblackQ.style.color = 'black';
+}
+
+//example 2
+function touchJoke() {
+    document.getElementById("answer").innerHTML = "To get to the MOOOOOVIES!";
+
+}
+
+//example 3
+function loadPic() {
+document.getElementById("imgLoad").innerHTML = "the image has loaded"
+    }
+
+
+
+//example 4
+function sqrMove() {
+          var sqr = document.getElementById("myAnimation");   
+          var pos = 0;
+          var id = setInterval(frame, 10);
+          function frame() {
+            if (pos == 350) {
+              clearInterval(id);
+            } else {
+              pos++; 
+              sqr.style.top = pos + 'px'; 
+              sqr.style.left = pos + 'px'; 
+            }
+          }
+        }
+
+
+</script>
 
 
 </head>
 
 
 <body>
+<h1> JavaScript Events: </h1>
+
+<!-- example 1-->
+<h3>onmouseover and onmouseout</h3>
+<span id= 'pinkQ' onmouseover="leftColorQ()" onmouseout="black()"> Q </span>
+
+<!-- example 2-->
+<h3>onTouchBegin</h3>
+
+<p ontouchstart="touchJoke()">Why did the cow cross the road? (on touch device, touch this line.) </p>
+<p id="answer"></p>
+ 
+<!-- example 3-->
+<h3>onLoad</h3>
+
+<img src="SB_gif.gif" onload="loadPic()" alt="Spounge Bob and pat using a computer">
+<p  id="imgLoad"></p>
+
+<!-- example 4-->
+<h3>JS animations</h3>
+
+<p>
+        <button onclick="sqrMove()">Click Me</button> 
+        </p>
+        
+        <div id ="myContainer">
+        <div id ="myAnimation"></div>
+        </div>
+        
 
 
-
-
+ <br>
+<a href="https://carpenter-chris.github.io/">Back</a>
 </body>
 
 

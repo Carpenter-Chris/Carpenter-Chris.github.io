@@ -1,69 +1,109 @@
 <!DOCTYPE html>
+
+
+
 <html lang="en">
+
+
 <head>
-<title>Topic 2 - JavaScript Objects - Object Creation Functions, Inheritance, Properties, Methods, Instantiation - example 1</title>
+
+
+<title>Topic 2 example 1 - object creation functions </title>
+
+
 <meta charset="utf-8">
 <meta name="author" content=" ">
 <meta name="description" content=" ">
 <meta name="keywords" content=" ">
 
+
 <style type="text/css">
+
+
 
 </style>
 <script>
 
-function file() {
-var name = ["image", "video", "video"];
-var size = ["316 KB", "2.3 MB", "16.7 MB"];
-var fileType = ["jpg", "mp4", "mp4"];
-var date = ["May 4th, 2019", "August 23, 2018", " December 25, 2015"];
-var length = ["00:3:02", "00:11:37"];
-var userInput = parseFloat(document.getElementById("fileInput").value);
+//example 1 - Object creation functions
+function device() {
+	let phone = {
+		make: "Samsung",
+		model: "Galaxy s10+",
+		os: "Android"
+	}
+		
+document.getElementById("outputDiv").innerHTML = "My object is a " + phone.make + " " + phone.model + " running " + phone.os;
+}	
+			
+//example 2 - inheritance
+//function compReturn() { 
+//var type = "Mouse";
+//var brand = "Razer";
+//var cost = "40.00";
 
-    class Media {
-        constructor(name, size, fileType, date) {
-         this.name = name;
-         this.size = size;
-	     this.fileType = fileType;
-	     this.date = date;
-        }
 
-        toString() {
-            return "This is a " + this.fileType + " " + this.name + " file. It's size is " + this.size + " and was created on " + this.date + ".";
-        }
-    }
-    class Video extends Media {
-        constructor(length) {
-            super();
-            this.length = length;
-        }
 
-        toString() {
-            return "This is a " + this.fileType + " " + this.name + " file. It's size is " + this.size + ", " + this.length + " and was created on " + this.date + ".";
-        }
-    }
 
-let pic1 = new Media(name[userInput - 1], size[userInput - 1], fileType[userInput - 1], date[userInput - 1]);
-let vid1 = new Video(name[userInput - 1], size[userInput - 1], fileType[userInput - 1], date[userInput - 1], length[userInput - 2]);
+//Initialize constructor functions 
+function ComputerPart(type, brand, cost) {
+	this.type = type;
+	this.brand = brand;
+	this.cost = cost;
+	}
+	
+function Peripherals(type, brand, cost, ports, inputOutput) {
+	ComputerPart.call(this, type, brand, cost);
+	this.ports = ports;
+	this.inputOutput = inputOutput;
+	}
 
-document.getElementById("fileOutput").innerHTML = pic1.toString();  
+//Link prototypes
+Peripherals.prototype = Object.create(ComputerPart.Prototype);
+ComputerPart.prototype = Object.create(ComputerPart.prototype);
+
+
+//prototype methods
+ComputerPart.prototype.info = function() {
+	return "{this.brand} {this.type} costs {this.cost} and requires a {this.port} to function.";
 }
 
+//initialize individual instances
+const part1 = new ComputerPart("video card", "Nvidia", "200.00");
+const part2 = new Peripherals("mouse", "Razer", "$40", "USB", "input");
+
+document.getElementById("outputDiv2").innerHTML = object.getPrototypeOf(part2);
+//}
+
+//computerPart.prototype.greeting = function() {
+//	document.getElementById("outputDiv2").innerHTML = "This computer has a " + this.brand + this.type + " that costs $" + this.cost;
+//}
+//}
+
+
 </script>
+
 </head>
+
+
 <body>
 
-     <h2>please select the desired file by entering its coresponding number:</h2> 
-     <p>
-    -05042019_001.jpg -  1 <br>
-    -08232018_023.mp4 -  2 <br>
-    -Christmas2015.mp4 - 3 <br>
- </p>
-                
-<input type="text" id="fileInput" size="5"><br>
-<button type="button" onclick="file()">File info</button>
-<div id="fileOutput"> </div>
+<h3>JS objects example 1 - Object Creation Functions</h3>
+<button type="button" onclick="device()">Try Me!</button>
+<div id="outputDiv"></div>
 
+<br>
+<br>
+
+<h3>JS objects example 2 - inheritance</h3>
+
+<button type="button" onclick="compReturn()">CLICK ME!</button>
+<div id="outputDiv2"></div>
+
+
+<br>
+<a href="https://carpenter-chris.github.io/">Back</a>
 </body>
+
+
 
 </html>
