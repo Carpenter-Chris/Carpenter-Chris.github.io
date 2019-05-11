@@ -31,53 +31,80 @@ function device() {
 		model: "Galaxy s10+",
 		os: "Android"
 	}
-		
-document.getElementById("outputDiv").innerHTML = "My object is a " + phone.make + " " + phone.model + " running " + phone.os;
+
+	//display results to a div
+	document.getElementById("outputDiv").innerHTML = "My object is a " + phone.make + " " + phone.model + " running " + phone.os;
 }	
-			
-//example 2 - inheritance
-//function compReturn() { 
-//var type = "Mouse";
-//var brand = "Razer";
-//var cost = "40.00";
 
 
+//example 2 - inheritance via prototype, 
+function compReturn() { 
 
+	//constants with parameters 
+	const part1 = new ComputerPart("GTX-560", "Nvidia", "200.00");
+	const part2 = new ComputerPart("Intel Core i7", "Intel", "400.00")
 
-//Initialize constructor functions 
-function ComputerPart(type, brand, cost) {
-	this.type = type;
-	this.brand = brand;
-	this.cost = cost;
-	}
-	
-function Peripherals(type, brand, cost, ports, inputOutput) {
-	ComputerPart.call(this, type, brand, cost);
-	this.ports = ports;
-	this.inputOutput = inputOutput;
+	//Initialize constructor function and instantiation 
+	function ComputerPart(type, brand, cost) {
+		this.type = type;
+		this.brand = brand;
+		this.cost = cost;
 	}
 
-//Link prototypes
-Peripherals.prototype = Object.create(ComputerPart.Prototype);
-ComputerPart.prototype = Object.create(ComputerPart.prototype);
+	//Method inheritance for output
+	ComputerPart.prototype.info = function() {
+		return "Component: " + this.brand + " " + this.type + " - cost $" + this.cost + ".";
+	}	
+
+	//outputs the return of the method to a div 
+	document.getElementById("outputDiv2").innerHTML = part1.info();
+	document.getElementById("outputDiv3").innerHTML = part2.info();
 
 
-//prototype methods
-ComputerPart.prototype.info = function() {
-	return "{this.brand} {this.type} costs {this.cost} and requires a {this.port} to function.";
 }
 
-//initialize individual instances
-const part1 = new ComputerPart("video card", "Nvidia", "200.00");
-const part2 = new Peripherals("mouse", "Razer", "$40", "USB", "input");
+//example 3 - inheritance, properties, instantiation, methods to calc, 
+function cart() {
+	
+	//constants with parameters
+	const item1 = new MarketCheckout("milk", 2.39);
+	const item2 = new MarketCheckout("eggs", 1.99);
+	const item3 = new MarketCheckout("chicken", 8.79);
+	const item4 = new MarketCheckout("Vegi tray", 12.99);
 
-document.getElementById("outputDiv2").innerHTML = object.getPrototypeOf(part2);
-//}
+	//constructor function and instantiation
+	function MarketCheckout(name, cost) {
+		this.name = name;
+		this.cost = cost;
+	}
 
-//computerPart.prototype.greeting = function() {
-//	document.getElementById("outputDiv2").innerHTML = "This computer has a " + this.brand + this.type + " that costs $" + this.cost;
-//}
-//}
+	//methods inheritance for output
+	MarketCheckout.prototype.tax = function() {
+		var itemTax = this.cost * 1.095;
+		return itemTax;
+	}
+
+	//return name and cost to display in output
+	MarketCheckout.prototype.itemList = function() {
+		return this.name + " - $" + this.cost;
+	}
+
+	//calculate the tax and round it to the nearest hundredth
+	function taxAdd() {
+		var taxTotal = Math.ceil((item1.tax() + item2.tax() + item3.tax() + item4.tax()) * 100) / 100;
+		return "The total plus tax (rate of .095) is: $" + taxTotal;
+	}
+
+	//display output for each object, the total and tax
+	document.getElementById("cartDiv1").innerHTML = item1.itemList();
+	document.getElementById("cartDiv2").innerHTML = item2.itemList();
+	document.getElementById("cartDiv3").innerHTML = item3.itemList();
+	document.getElementById("cartDiv4").innerHTML = item4.itemList();
+	document.getElementById("cartTax").innerHTML = taxAdd();
+
+
+}
+
 
 
 </script>
@@ -87,7 +114,7 @@ document.getElementById("outputDiv2").innerHTML = object.getPrototypeOf(part2);
 
 <body>
 
-<h3>JS objects example 1 - Object Creation Functions</h3>
+<h3>JS objects example 1 - Object Creation Functions, properties</h3>
 <button type="button" onclick="device()">Try Me!</button>
 <div id="outputDiv"></div>
 
@@ -96,9 +123,24 @@ document.getElementById("outputDiv2").innerHTML = object.getPrototypeOf(part2);
 
 <h3>JS objects example 2 - inheritance</h3>
 
-<button type="button" onclick="compReturn()">CLICK ME!</button>
+<button type="button" onclick="compReturn()">Check components info!</button>
 <div id="outputDiv2"></div>
+<div id="outputDiv3"></div>
 
+<br>
+<br>
+
+<h3>JS objects example 3 - methods</h3>
+<button type="button" onclick="cart()">Calculate total</button>
+<br>
+<br>
+<span>Item list - Cost</span> <br>
+<span id="cartDiv1"></span> <br>
+<span id="cartDiv2"></span> <br>
+<span id="cartDiv3"></span> <br>
+<span id="cartDiv4"></span> <br>
+<br>
+<span id="cartTax"></span> <br>
 
 <br>
 <a href="https://carpenter-chris.github.io/">Back</a>
