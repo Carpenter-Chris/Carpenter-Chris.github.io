@@ -1,39 +1,92 @@
 <!DOCTYPE html>
-
-
-
 <html lang="en">
-
-
 <head>
-
-
-<title> </title>
-
-
+<title>Local Storage - setItem, getItem, array, JSON, Stringify</title>
 <meta charset="utf-8">
 <meta name="author" content=" ">
 <meta name="description" content=" ">
 <meta name="keywords" content=" ">
 
-
 <style type="text/css">
-
-
-
 </style>
 
+<script>
+
+//set variables
+var names = [];
+var numOf = names.length;
+var arrayList = 0;
+
+//function that is called by the "Add Name" button. Takes the name from the "nameInput" field and adds it to the "names" array by calling the "addName" function. 
+//After each name is added to the array the field is cleared for the next name. 
+//The array is then stringifyed with JSON and saved to local storage with localStorage.setItem
+function studentList() {
+    var newName = String(document.getElementById("nameInput").value);
+    var nameFunc = addName(newName, numOf, names);
+    numOf = numOf + 1;
+
+    document.getElementById("inputReset").reset();
+    localStorage.setItem("names", JSON.stringify(names));
+    return nameFunc; 
+}
+
+//takes the user entered name, "numberOf" variable, and "names" array. Uses a loop to add the name to the correct array index, based on the "numberOf" names entered. 
+//The "numberOf" variable adds one each time a name is entered and is used to assign each name to an index. The array is then returned back to the "studentList" function.
+function addName(newName, count, names) {
+    var namesList = names;
+
+    for (i = count; i < count + 1; i++) {
+        namesList[i] = newName;
+    }
+    return namesList;
+}
+
+//is called by the "See List" button. Pulls the list from the storage displays each name on a line for the user to see.
+function outputList() {
+    var storageNames = JSON.parse(localStorage.getItem("names"));
+    var storageList = [];
+
+    for (i = 0; i < storageNames.length; i++){
+      storageList = storageList + "\n" + storageNames[i] + ", " + "<br>";
+      document.getElementById("listOutput").innerHTML = "<b>List of names: </b>" + "<br>" +storageList;
+    }
+}
+
+</script>
 
 </head>
 
-
 <body>
+<h2>Local Storage - setItem, getItem, array, JSON, Stringify</h2> 
 
-
-
+<!-- instructions for the user -->
+<p> Enter the name of a student then click the button to add them to the list. <br>
+    <b>Note:</b> If you close the page and come back, the previous list is saved, <br>
+    but you will not be able to add more to that same list. Any new names added will <br>
+    restart the list. 
+</p>
+<!-- used a form so that the field can be cleared after each entry to make room for more names -->
+<form id="inputReset" value="Reset form">
+<!-- field for user to enter names -->
+<input type="text" id="nameInput" size="8"><br>
+<br>
+</form>
+<!-- button to add each name -->
+<button type="button" onclick="studentList()">Add Name</button>
+<br>
+<br>
+<!-- button to trigger list of names to be displayed -->
+<button type="button" onclick="outputList()">See List</button>
+<br>
+<br>
+<!-- Output div to display names to user -->
+<div id="listOutput"></div>
+        
+<br>
+<br>
+<a href="https://carpenter-chris.github.io/">Back</a>
 
 </body>
-
 
 
 </html>

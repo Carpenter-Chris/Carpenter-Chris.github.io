@@ -47,10 +47,10 @@ function numberOf(sides, howMany) {
 	return rolls;
 }
 
-var minMax = [];
-	minMax["min"] = ", Lowest possible roll?! Better luck next time.";
-	minMax["max"] = ", Max roll! congradulations!";
-
+var minMax = {
+	min: ", Lowest possible roll?! Better luck next time.",
+	max: ", Max roll! congradulations!"
+}
 // takes the array with randomly generated numbers and adds them together to get a total
 function total(display, sides, howMany) {
 	var rollAdd = 0;
@@ -59,10 +59,10 @@ function total(display, sides, howMany) {
 		rollAdd = rollAdd + display[i];
 	}
 	if (rollAdd == sides * howMany){
-		return rollAdd + minMax[max];
+		return rollAdd + minMax["max"];
 	}
 	else if (rollAdd == ((sides + 1) - sides) * howMany) {
-		return rollAdd + minMax[min];
+		return rollAdd + minMax["min"];
 	}
 	else {
 	return rollAdd;
