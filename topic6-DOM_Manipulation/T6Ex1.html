@@ -1,39 +1,102 @@
 <!DOCTYPE html>
 
-
-
 <html lang="en">
-
-
 <head>
-
-
 <title> </title>
-
-
 <meta charset="utf-8">
 <meta name="author" content=" ">
 <meta name="description" content=" ">
 <meta name="keywords" content=" ">
-
-
 <style type="text/css">
-
-
 
 </style>
 
+<script>
+
+// function is triggered by clicking the "test me!" button. 
+// function adds text to an element, creates a button, uses the new button to get the date and time, removes the "test me!" button.
+function buttonAppend() {
+    document.getElementById("domGetElm").innerHTML = "Using DOM to insert text into an element.";
+    
+
+    var dateButton = document.createElement("BUTTON");
+    dateButton.innerHTML = "Date & Time"
+    document.getElementById("getDateTime").appendChild(dateButton);
+    dateButton.setAttribute("id", "dateID");
+
+    document.getElementById("dateID").onclick = function() {getDate()};
+
+    var remTest = document.getElementById("testButton");
+    remTest.remove();
+
+}
+
+// called by the buttonAppend() function to get the date and time.
+function getDate() {
+    document.getElementById("getDateTime").innerHTML = Date();
+
+}
+
+// function is called by the "append me!" button. 
+// function takes the user input and appends the list with the users input. It then clears the input box. 
+function append() {
+    var listUserInput = String(document.getElementById("listInput").value);
+    var app = document.createElement("LI");
+    var appText = document.createTextNode(listUserInput);
+    app.appendChild(appText);
+
+    var appList = document.getElementById("appendMe");
+    appList.insertBefore(app, appList.childNodes[0]);
+
+    document.getElementById("listInputReset").reset();
+}
+
+// function is called by the remove button.
+// function removes the first item in the "appendMe" list each time it is clicked. 
+function appRemove() {
+    var appList = document.getElementById("appendMe");
+    appList.removeChild(appList.childNodes[0]);
+
+}
+
+</script>
 
 </head>
 
-
 <body>
 
-
-
-
 </body>
+<h2>DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</h2>
 
+<!-- used for the text added from the buttonAppend() function -->
+<p id="domGetElm"></p>
 
+<!-- button and paragraph used for the ButtonAppend() function to add the new button and display date and time -->
+<button id="testButton" onclick="buttonAppend()">Test me!</button>
+<p id="getDateTime"></p>
+<br>
 
+<!-- text directions for user -->
+<p>Please enter item to be added to list: </p>
+
+<!-- input, button, and list used with the append() function -->
+<!-- user enters an item to be added to the list then clicks the "Append Me!" button. button calls the append() function which adds a new element 
+ with the users input. IT then clears the field so that the user can add another item if desired.-->
+<form id="listInputReset">
+<input type="text" id="listInput" size="8">  <br>
+</form>  
+<button id="appendButton" onclick="append()">Append Me!</button>
+<ul id="appendMe"> 
+    <li>Mary</li>
+    <li>Linda</li>
+    <li>John</li> 
+    <li>Chris</li>
+    <li>Mike</li>
+
+</ul>
+<br>
+
+<!-- button that calls the appRemove() function which removes the first item in the "appendMe" list each time it is clicked -->
+<p>Click to remove top item from list:</p>
+<button id="listRemove" onclick="appRemove()">remove</button>
 </html>

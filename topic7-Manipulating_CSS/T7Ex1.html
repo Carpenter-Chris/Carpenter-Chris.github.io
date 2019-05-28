@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title> </title>
+<meta charset="utf-8">
+<meta name="author" content=" ">
+<meta name="description" content=" ">
+<meta name="keywords" content=" ">
+
+<style type="text/css">
+
+</style>
+<script>
+
+// set arrays to call styles from
+var colors = ["blue", "red", "yellow", "orange", "green", ""];
+var textColor = ["lightblue", "blue", "orangered", "purple", "yellow", "black"];
+var paraSize = ["8pt", "10pt", "12pt", "14pt", "16pt", "18pt"]
+
+// called by clicking button. checks the current background color. Depending on the current color, each click changes the color, font size, and font color
+function changeColor(colors) {
+
+// checks the current background color
+var currentColor = String(getComputedStyle(document.body).backgroundColor);
+
+// if statements that check the color and sets the new color depending on current background color
+if (currentColor == "rgba(0, 0, 0, 0)" || currentColor == "rgb(255, 255, 255)") {
+   var styleIndex = 0;
+}
+else if (currentColor == "rgb(0, 0, 255)" || currentColor == "blue") {
+   var styleIndex = 1;
+}
+else if (currentColor == "rgb(255, 0, 0)" || currentColor == "red") {
+   var styleIndex = 2;
+}
+else if (currentColor == "rgb(255, 255, 0)" || currentColor == "yellow") {
+   var styleIndex = 3;
+}
+else if (currentColor == "rgb(255, 165, 0)"  || currentColor == "orange") {
+   var styleIndex = 4;
+}
+else if (currentColor == "rgb(0, 128, 0)" || currentColor == "green") {
+   var styleIndex = 5; 
+}
+
+// set the variables for the classes and their associated style
+var changeBC = document.querySelector(".styleChanger");
+var changeText = document.querySelector(".fontChanger")
+var changePara = document.querySelector(".paraStyle")
+
+// change class styles based on styleIndex & arrays
+changeBC.style.backgroundColor = colors[styleIndex];
+changeText.style.color = textColor[styleIndex];
+changePara.style.fontSize = paraSize[styleIndex];
+
+}
+
+</script>
+</head>
+
+<body class="styleChanger">
+<!-- header -->
+<h2 class="fontChanger">Manipulating CSS Class Properties Using JavaScript </h2>
+
+<!-- button for the user to change the page style -->
+<button id="button" onclick="changeColor(colors)">Change Color</button>
+
+<!-- Paragraph with text to adjust style -->
+<p class="paraStyle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <br>
+    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non <br>
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+</body>
+
+
+
+</html>
