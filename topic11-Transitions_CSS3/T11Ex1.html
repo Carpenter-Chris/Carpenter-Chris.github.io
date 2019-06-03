@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries </title>
+<meta charset="utf-8">
+<meta name="author" content=" ">
+<meta name="description" content=" ">
+<meta name="keywords" content=" ">
+
+<style type="text/css">
+
+/* creates a colored div that changes width when the mouse is hovered over it */
+div#one {
+    width: 100px;
+    height: 100px;
+    background: lightblue;
+    -webkit-transition: width 2s; 
+    -ms-transition: width 2s;
+    -moz-transition: width 2s;
+    transition: width 2s;
+}
+
+div#one:hover {
+    width:300px;
+}
+
+/* creates a colored div that changes in height and width when the mouse is hovered over it */
+div#two {
+    width: 100px;
+    height: 100px;
+    background:rgb(167, 15, 4);
+    -webkit-transition: width 2s, height 3s; 
+    -ms-transition: width 2s, height 3s;
+    -moz-transition: width 2s, height 3s;
+    transition: width 2s, height 3s;
+}
+
+div#two:hover {
+    width: 400px;
+    height: 300px;
+}
+
+/* creates a colored div that changes in size and rotates when hovered over */
+div#three {
+    width: 100px;
+    height: 100px;
+    background:purple;
+    -webkit-transition: width 2s, height 2s, -webkit-transform 2s; 
+    -ms-transition: width 2s, height 2s, -webkit-transform 2s;
+    -moz-transition: width 2s, height 2s, -webkit-transform 2s;
+    transition: width 2s, height 2s, transform 2s;
+}
+
+div#three:hover {
+    width: 300px;
+    height: 300px;
+    -webkit-transform: rotate(180deg); /* Safari */
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/* creates a colored div that changes colors and shrinks with a delay of 1 second when hovered over */
+div#four {
+    width: 300px;
+    height: 300px;
+    background: green;
+    -webkit-transition: width 1s, height 1s, -webkit-transform 1s;
+    -webkit-transition-delay: 1s;
+    -ms-transition: width 1s, height 1s, -ms-transform 1s;
+    -ms-transition-delay: 1s;
+    -moz-transition: width 1s, height 1s, -moz-transform 1s;
+    -moz-transition-delay: 1s;
+    transition: width 1s, height 1s, transform 1s;
+    transition-delay: 1s;
+}
+
+div#four:hover {
+    width: 100px;
+    height: 100px;
+    background: orange;
+
+
+
+}
+
+</style>
+
+<script>
+
+
+
+
+
+
+</script>
+</head>
+
+<body>
+<h2>Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries</h2>
+<br>
+
+<!-- div one -->
+<h3>Transition just height or just width</h3>
+<div id="one"> This is a transition!</div>
+<br>
+<br>
+
+<!-- div two -->
+<h3>Transition both hight and width</h3>
+<div id="two">This is another transition!</div>
+<br>
+<br>
+
+<!-- div three -->
+<h3>Transition and transform together</h3>
+<div id="three">This is div 3</div>
+<br>
+<br>
+
+<!-- div four -->
+<h3>Transition delay</h3>
+<div id="four"> I'm a little slow to transition...</div>
+
+<br>
+<br>
+<a href="https://carpenter-chris.github.io/">Back</a>
+</body>
+
+</html>

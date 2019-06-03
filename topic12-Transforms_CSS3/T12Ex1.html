@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries </title>
+
+<meta charset="utf-8">
+<meta name="author" content=" ">
+<meta name="description" content=" ">
+<meta name="keywords" content=" ">
+
+
+<style type="text/css">
+
+/* creates a colored div that is rotated 20 degrees */
+div.one {
+  width: 150px;
+  height: 100px;
+  background-color:green;
+  -ms-transform: rotate(20deg); 
+  -webkit-transform: rotate(20deg); 
+  -moz-transform: rotate(20deg); 
+  transform: rotate(20deg);
+}
+
+/* creates a colored div that is skewed 20 degrees */
+div.two {
+  width: 150px;
+  height: 100px;
+  background-color:darkred;
+  -ms-transform: skewY(20deg); 
+  -webkit-transform: skewY(20deg); 
+  -moz-transform: skewY(20deg);
+  transform: skewY(20deg);
+  color: pink;
+}
+
+/* creates a colored div that is scaled taller*/
+div#threeTall {
+  width: 150px;
+  height: 80px;
+  background-color: lightsteelblue;
+  -ms-transform: scaleY(2);  
+  -webkit-transform: scaleY(2);  
+  -moz-transform: scaleY(2); 
+  transform: scaleY(2);
+}
+
+/* creates a colored div that is scaled wider */
+div#threeWide {
+  width: 150px;
+  height: 80px;
+  background-color: purple;
+  -ms-transform: scaleX(2);  
+  -webkit-transform: scaleX(2);  
+  -moz-transform: scaleX(2); 
+  transform: scaleX(2);
+  position: absolute; 
+  left:85px;
+  top: 780px;
+}
+
+/* creates a colored div that is then rotated by clicking a button */
+div#four {
+  width: 150px;
+  height: 100px;
+  background-color:darkgreen;
+  color: rgb(11, 146, 187);
+  font-weight:bold;
+  font-size: 16px;
+}
+
+</style>
+<script>
+
+//Rotates element based on what the current position is.
+function rotateFour() {
+
+    //get the element
+    var getFour = document.getElementById("four");
+    //checks the current style transform of the element
+    var currentDeg = window.getComputedStyle(getFour, null).getPropertyValue("transform");
+
+    //depending on the current transform degrees adjust the div
+    if (currentDeg == "none") {
+
+        //matrix(0.965926, 0.258819, -0.258819, 0.965926, 0, 0)
+        document.getElementById("four").style.msTransform = "rotate(15deg)";
+        document.getElementById("four").style.webkitTransform = "rotate(15deg)";
+        document.getElementById("four").style.mozTransform = "rotate(15deg)";
+
+        document.getElementById("four").innerHTML = "This div is still boring...";
+    }
+
+    else if(currentDeg == "matrix(0.965926, 0.258819, -0.258819, 0.965926, 0, 0)") {
+
+        //matrix(0.866025, 0.5, -0.5, 0.866025, 0, 0)
+        document.getElementById("four").style.msTransform = "rotate(30deg)";
+        document.getElementById("four").style.webkitTransform = "rotate(30deg)";
+        document.getElementById("four").style.mozTransform = "rotate(30deg)";
+
+        document.getElementById("four").innerHTML = "Getting better...";
+    }
+
+    else if (currentDeg == "matrix(0.866025, 0.5, -0.5, 0.866025, 0, 0)") {
+        
+        //matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)
+        document.getElementById("four").style.msTransform = "rotate(45deg)";
+        document.getElementById("four").style.webkitTransform = "rotate(45deg)";
+        document.getElementById("four").style.mozTransform = "rotate(45deg)";
+
+        document.getElementById("four").innerHTML = "Woo Hoo!!!";
+    }
+
+    else if (currentDeg == "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)") {
+        
+        //matrix(0.5, 0.866025, -0.866025, 0.5, 0, 0)
+        document.getElementById("four").style.msTransform = "rotate(60deg)";
+        document.getElementById("four").style.webkitTransform = "rotate(60deg)";
+        document.getElementById("four").style.mozTransform = "rotate(60deg)";
+
+        document.getElementById("four").innerHTML = "...ohhhh boy...";
+    }
+
+    else if (currentDeg == "matrix(0.5, 0.866025, -0.866025, 0.5, 0, 0)") {
+        
+        //0.258819, 0.965926, -0.965926, 0.258819, 0, 0
+        document.getElementById("four").style.msTransform = "rotate(75deg)";
+        document.getElementById("four").style.webkitTransform = "rotate(75deg)";
+        document.getElementById("four").style.mozTransform = "rotate(75deg)";
+
+        document.getElementById("four").innerHTML = "GET ME OFF OF THIS DIV!!!!";
+    }
+
+    else if (currentDeg == "matrix(0.258819, 0.965926, -0.965926, 0.258819, 0, 0)") {
+        
+        //matrix(6.12323e-17, 1, -1, 6.12323e-17, 0, 0)
+        document.getElementById("four").style.msTransform = "rotate(90deg)";
+        document.getElementById("four").style.webkitTransform = "rotate(90deg)";
+        document.getElementById("four").style.mozTransform = "rotate(90deg)";
+
+        document.getElementById("four").innerHTML = " **passes Out**";
+    }
+
+    else if (currentDeg == "matrix(6.12323e-17, 1, -1, 6.12323e-17, 0, 0)") {
+        
+        //reset
+        document.getElementById("four").style.msTransform = "none";
+        document.getElementById("four").style.webkitTransform = "none";
+        document.getElementById("four").style.mozTransform = "none";
+
+        document.getElementById("four").innerHTML = "Is it over? ...Meh, that wasn't so bad";
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+<h1>Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries</h1>
+<br>
+
+<!-- div one -->
+<h2>transform - rotate 20 degrees</h2>
+<br>
+<div class="one"> Rotate!</div>
+<br>
+
+<!-- div two -->
+<h2>transform - skew Y 20 degrees</h2>
+<br>
+<div class="two"> Something is askew... </div>
+<br>
+
+<!-- div three - tall -->
+<h2>transform - transform scale Y 2</h2>
+<br>
+<br>
+
+
+<div id="threeTall"> I feel taller</div>
+<br>
+<br>
+
+<!-- div three - wide -->
+<h2>transform - transform scale X 2</h2>
+
+<div id="threeWide"> I feel fat</div>
+<br>
+<br>
+<br>
+<br>
+
+<!-- div four rotate on click -->
+<h2>transform - rotate on click</h2>
+<button onclick="rotateFour()">Rotate! </button>
+<br>
+<br>
+<br>
+
+<div id="four">I can't wait for this div to do something...</div>
+<br>
+<br>
+<br>
+
+<a href="https://carpenter-chris.github.io/">Back</a>
+</body>
+
+</html>
