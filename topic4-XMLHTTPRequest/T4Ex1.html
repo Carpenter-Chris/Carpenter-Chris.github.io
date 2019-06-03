@@ -18,7 +18,20 @@
 
 <script>
 
-
+//when the button is clicked it calls this function. Function requests info from openweathermap.org. The info is then displayed as text to the user. 
+function request() {
+    var newRequest = new XMLHttpRequest();
+    newRequest.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("changeText").innerHTML = this.responseText;
+        }
+        else if(this.readystate == 4 && this.tatus == 401) {
+            document.getElementById("changeText").innerHTML = this.responseText;
+        }
+    };
+    newRequest.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip=90001,us&APPID=2660e3bc167a0e3ca8fc3fa8c73017d9", true);
+    newRequest.send();
+}
 
 
 
@@ -26,7 +39,18 @@
 
 <body>
 <h2>Using (AJAX) XMLHTTPRequest to Consume a JSON Web Service</h2>
+<br>
+<!-- button, when clicked calls the request() function -->
+<button type="button" onclick="request()">Check the weather in Los Angeles</button>
+<br>
 
+<!-- text response from the request() function is displayed in this paragraph -->
+<p id="changeText">This text is going to change...</p>
+<br>
+
+<!-- If the AJAX request is not working correctly because of GitHub, here is a link to a screenshot that shows it working for me on chrome -->
+<a href="workingPic.png">Picture showing that it worked, incase it doesn't work correctly with Github</a>
+<br>
 
 
 
