@@ -1,39 +1,60 @@
 <!DOCTYPE html>
-
-
-
 <html lang="en">
-
-
 <head>
-
-
-<title> </title>
-
+<title> HTML5 Tags - Video, Audio, and Canvas </title>
 
 <meta charset="utf-8">
 <meta name="author" content=" ">
 <meta name="description" content=" ">
 <meta name="keywords" content=" ">
 
-
 <style type="text/css">
 
-
-
 </style>
-
 
 </head>
 
 
 <body>
+<!-- Canvas header -->
+<canvas id="canvasTital" width="700" height="80" style="border:1px solid #000000;">Your browser does not support canvas.</canvas>
 
+<!-- audio tag -->
+<h3>Audio tag</h3>
+<audio controls>
+    <source src="The_Pretender.mp3" type="audio/mp3">
+    Your browser does not support this audio type.
+</audio>
 
+<!-- video tag -->
+<h3>Video Tag - My son sliding into me...</h3>
+<br>
+<video width="432" height="768" controls>
+    <source src="Slide.mp4" type="video/mp4">
+    Your browser does not support this video type.
+</video>
+<br>
 
+<script>
+    //for canvas
+    var canTital = document.getElementById("canvasTital");
+    var canContext = canTital.getContext("2d");
+        
+     canContext.font = "40px Times New Roman";
+        
+    //gradient
+    var colorGrad = canContext.createLinearGradient(0,0, canTital.width, 0);
+         colorGrad.addColorStop("0", "green");
+         colorGrad.addColorStop("0.25", "blue");
+         colorGrad.addColorStop("0.50", "purple");
+         colorGrad.addColorStop("0.75", "red");
+         colorGrad.addColorStop("1.0", "orange");
+        
+     canContext.strokeStyle = colorGrad;
+     canContext.strokeText("HTML5 Tags - Video, Audio, and Canvas", 10, 50);
+        
+</script>
 
 </body>
-
-
 
 </html>
