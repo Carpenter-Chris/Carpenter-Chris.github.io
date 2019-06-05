@@ -11,8 +11,8 @@
 <style type="text/css">
 
 span {
-    font-weight: bold;
-    font-size:30pt;
+  font-weight: bold;
+  font-size:30pt;
 }
 
 #myContainer {
@@ -28,57 +28,66 @@ span {
   background-color:black;
 }
 
+div#divFive {
+  width: 200px;
+  height: 100px;
+  background: rgb(103, 103, 226);
+  transition: width 3s, height 3s;
+  
+}
+
+div#divFive:hover {
+  width: 400px;
+  height: 300px;
+}
+
 </style>
 <script>
 //example 1
 function leftColorQ() {
-    var leftQ = document.getElementById("pinkQ");
-        leftQ.style.color = 'pink';       
+  var leftQ = document.getElementById("pinkQ");
+  leftQ.style.color = 'pink';       
 }
 
 function black() {
-    var lblackQ = document.getElementById("pinkQ");
-    lblackQ.style.color = 'black';
+  var lblackQ = document.getElementById("pinkQ");
+  lblackQ.style.color = 'black';
 }
 
 //example 2
 function touchJoke() {
-    document.getElementById("answer").innerHTML = "To get to the MOOOOOVIES!";
+  document.getElementById("answer").innerHTML = "To get to the MOOOOOVIES!";
 
 }
 
 //example 3
 function loadPic() {
-document.getElementById("imgLoad").innerHTML = "the image has loaded"
-    }
-
-
+  document.getElementById("imgLoad").innerHTML = "the image has loaded"
+}
 
 //example 4
 function sqrMove() {
-          var sqr = document.getElementById("myAnimation");   
-          var pos = 0;
-          var id = setInterval(frame, 10);
-          function frame() {
-            if (pos == 350) {
-              clearInterval(id);
-            } else {
-              pos++; 
-              sqr.style.top = pos + 'px'; 
-              sqr.style.left = pos + 'px'; 
-            }
-          }
-        }
+  var sqr = document.getElementById("myAnimation");   
+  var pos = 0;
+  var id = setInterval(frame, 10);
 
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } 
+    else {
+      pos++; 
+      sqr.style.top = pos + 'px';  
+    }
+  }
+}
 
 </script>
 
-
 </head>
 
-
 <body>
-<h1> JavaScript Events: </h1>
+<h1> JavaScript Events: Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events</h1>
 
 <!-- example 1-->
 <h3>onmouseover and onmouseout</h3>
@@ -100,19 +109,45 @@ function sqrMove() {
 <h3>JS animations</h3>
 
 <p>
-        <button onclick="sqrMove()">Click Me</button> 
-        </p>
+  <button onclick="sqrMove()">Click Me</button> 
+</p>
         
-        <div id ="myContainer">
-        <div id ="myAnimation"></div>
-        </div>
-        
+<div id ="myContainer">
+<div id ="myAnimation"></div>
+</div>
+<br>
+<br>
 
+<div id="divFive">This is my transition event!</div>
 
- <br>
+<script>
+//Script for Div five example
+//support safari
+document.getElementById("divFive").addEventListener("webkitTransitionEnd", fiveEvent);
+
+//support for IE
+document.getElementById("divFive").addEventListener("msTransitionEnd", fiveEvent);
+
+//support for mozzila
+document.getElementById("divFive").addEventListener("mozTransitionEnd", fiveEvent);
+
+//standard support
+document.getElementById("divFive").addEventListener("transitionend", fiveEvent);
+
+function fiveEvent() {
+  this.innerHTML = "Idaho...we have transition, I repeat, we have transition.";
+  this.style.backgroundColor = "black";
+  this.style.color = "rgb(103, 103, 226)";
+  this.style.width = "400px";
+  this.style.height = "300px";
+}
+</script>
+
+<br>
+<br>
+<br>
+<br>
 <a href="https://carpenter-chris.github.io/">Back</a>
 </body>
-
-
 
 </html>
