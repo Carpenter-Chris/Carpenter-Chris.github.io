@@ -1,38 +1,76 @@
 <!DOCTYPE html>
-
-
-
 <html lang="en">
-
-
 <head>
-
-
 <title> </title>
-
-
 <meta charset="utf-8">
 <meta name="author" content=" ">
 <meta name="description" content=" ">
 <meta name="keywords" content=" ">
 
-
 <style type="text/css">
-
-
 
 </style>
 
+<script>
 
+//when the button is clicked it calls this function. Function requests info from openweathermap.org. The info is then displayed as text to the user. 
+function request() {
+    var newRequest = new XMLHttpRequest();
+    newRequest.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("changeText").innerHTML = this.responseText;
+            var wthrObj = JSON.parse(this.responseText);
+            document.getElementById("cityID").innerHTML = "Location: " + wthrObj.name;
+            document.getElementById("weatherID").innerHTML = "Weather: " + wthrObj.weather[0].main ;
+            document.getElementById("descriptionID").innerHTML = "Description: " + wthrObj.weather[0].description ;
+            document.getElementById("tempID").innerHTML = "Temperature: " + Math.ceil(((wthrObj.main.temp - 273.15) * 9/5 + 32)) + " Degrees" ;
+            document.getElementById("humidityID").innerHTML = "Humidity: " + wthrObj.main.humidity + "%" ;
+            document.getElementById("windID").innerHTML = "Wind Speed: " + wthrObj.wind.speed + " mph" ;
+            document.getElementById("cloudID").innerHTML = "Clouds: " + wthrObj.clouds.all + "%" ;
+        }
+        else if(this.readystate == 4 && this.tatus == 401) {
+            document.getElementById("changeText").innerHTML = this.responseText;
+        }
+    };
+    
+    newRequest.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip=90001&units=imperial,us&APPID=2660e3bc167a0e3ca8fc3fa8c73017d9", true);
+    newRequest.send();
+}
+        
+</script>
 </head>
-
-
 <body>
 
+<h2>Using (AJAX) XMLHTTPRequest to Consume a JSON Web Service</h2>
+<br>
+<!-- button, when clicked calls the request() function -->
+<button type="button" onclick="request()">Check the weather in Los Angeles</button>
+<br>
+                
+<!-- text response from the request() function is displayed in this paragraph -->
+<p id="changeText">This text is going to change...</p>
+<br>
 
+<h3>The Current Weather in Los Angeles is:</h3>
+<p id="cityID"></p>
+<p id="weatherID"></p>
+<p id="descriptionID"></p>
+<p id="tempID"></p>
+<p id="humidityID"></p>
+<p id="windID"></p>
+<p id="cloudID"></p>
 
+<p id=""></p>
 
+<!-- If the AJAX request is not working correctly because of GitHub, here is a link to a screenshot that shows it working for me on chrome -->
+<a href="JSONweather.jpg">Picture showing that it worked, incase it doesn't work correctly with Github</a>
+<br>     
+                
+<br>
+<br>
+<a href="https://carpenter-chris.github.io/">Back</a>
 </body>
+
 
 
 
