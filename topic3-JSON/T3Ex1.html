@@ -28,7 +28,7 @@ function request() {
             document.getElementById("windID").innerHTML = "Wind Speed: " + wthrObj.wind.speed + " mph" ;
             document.getElementById("cloudID").innerHTML = "Clouds: " + wthrObj.clouds.all + "%" ;
         }
-        else if(this.readystate == 4 && this.tatus == 401) {
+        else if(this.readystate == 4 && this.status == 401) {
             document.getElementById("changeText").innerHTML = this.responseText;
         }
     };
