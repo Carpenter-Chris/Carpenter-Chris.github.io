@@ -26,7 +26,6 @@ series one, series two, series three, series four, series five, gold pins, blind
 
 <!-- Navigation menu -->
 <nav>
-    
     <div class="menuList">
         <ul>
             <li style="font-size: 24px">Menu</li>
@@ -42,11 +41,11 @@ series one, series two, series three, series four, series five, gold pins, blind
             <li><a href="">Legal</a></li>
         </ul>
     </div>
-
 </nav>
 
 <!--<a class="twitter-timeline" href="https://twitter.com/Blizzard_Ent?ref_src=twsrc%5Etfw">Tweets by Blizzard_Ent</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
 
+<!-- div to display content -->
 <div id="wrapper">
     <!-- image header -->
     <header> <img src="corkBoardWide.jpg" alt="" style="width:700px; height: 150px; padding-top: 6px;"></header>
@@ -72,6 +71,7 @@ series one, series two, series three, series four, series five, gold pins, blind
 
         <h2>Blizzcon countdown</h2>
         Date: 01/01/2019
+        <br>
         <br>
         Blizzcon is the biggest gathering of blizzard nerds and is also the primary play for blizzard collectibles to be sold and trades. With that being said 
         here is a countdown to the next Blizzcon!
@@ -100,12 +100,92 @@ series one, series two, series three, series four, series five, gold pins, blind
         }, 1000); 
         </script> 
 
+        <!-- Anaheim Convention Center (where they hold blizzcon) weather -->
+        <script>
+
+        //when the button is clicked it calls this function. Function requests info from openweathermap.org. The info is then displayed as text to the user. 
+        function request() {
+            var newRequest = new XMLHttpRequest();
+            newRequest.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //document.getElementById("changeText").innerHTML = this.responseText;
+                    var wthrObj = JSON.parse(this.responseText);
+                    document.getElementById("cityID").innerHTML = "Location: " + wthrObj.name;
+                    document.getElementById("weatherID").innerHTML = "Weather: " + wthrObj.weather[0].main ;
+                    document.getElementById("descriptionID").innerHTML = "Description: " + wthrObj.weather[0].description ;
+                    document.getElementById("tempID").innerHTML = "Temperature: " + Math.ceil(((wthrObj.main.temp - 273.15) * 9/5 + 32)) + " Degrees" ;
+                    document.getElementById("humidityID").innerHTML = "Humidity: " + wthrObj.main.humidity + "%" ;
+                    document.getElementById("windID").innerHTML = "Wind Speed: " + wthrObj.wind.speed + " mph" ;
+                    document.getElementById("cloudID").innerHTML = "Clouds: " + wthrObj.clouds.all + "%" ;
+                
+                    document.getElementById("weatherHeader").innerHTML = "The Current Weather at the Anaheim Convention Center is:"
+                    var temp = Math.ceil(((wthrObj.main.temp - 273.15) * 9/5 + 32));
+                    var wthrAtrib = document.getElementById("weatherImg");
+
+                    //based on the temp will change background color of weather output div and add a weather icon img based on temp
+                    if (temp <= 50) {
+                        document.getElementById("weatherDiv").style.animationName = "weatherCold";
+                        wthrAtrib.setAttribute("src", "cold.png");
+                        wthrAtrib.setAttribute("width", "120px");
+                        wthrAtrib.setAttribute("height", "120px");
+                        wthrAtrib.setAttribute("alt", "Cold weather");
+                        document.getElementById("weatherImg").style.cssFloat = "right";
+                    }
+                    else if(temp > 50 && temp < 80) {
+                        document.getElementById("weatherDiv").style.animationName = "weatherWarm";
+                        wthrAtrib.setAttribute("src", "warm.png");
+                        wthrAtrib.setAttribute("width", "120px");
+                        wthrAtrib.setAttribute("height", "120px");
+                        wthrAtrib.setAttribute("alt", "Warm weather");
+                        document.getElementById("weatherImg").style.cssFloat = "right";
+                    }
+                    else if(temp > 80) {
+                        document.getElementById("weatherDiv").style.animationName = "weatherHot";
+                        wthrAtrib.setAttribute("src", "hot.png");
+                        wthrAtrib.setAttribute("width", "120px");
+                        wthrAtrib.setAttribute("height", "120px");
+                        wthrAtrib.setAttribute("alt", "Hot weather");
+                        document.getElementById("weatherImg").style.cssFloat = "right";
+                    }
+                
+                
+                }
+                else if(this.readystate == 4 && this.status == 401) {
+                    document.getElementById("changeText").innerHTML = this.responseText;
+                }
+            };
+                    
+            newRequest.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip=92802&units=imperial,us&APPID=2660e3bc167a0e3ca8fc3fa8c73017d9", true);
+            newRequest.send();
+
+            document.getElementById("weatherHeader").innerHTML = "The Current Weather in Anaheim California is: ";
+        }
+                        
+        </script>
+<!-- button to check weather -->
+<button type="button" onclick="request()">Check the weather in Anaheim CA</button>
+<br>
+
+<!-- display weather at Anaheim convention center, animation background based on temp, and load weather icon img -->
+<h3 id="weatherHeader"></h3>
+<div id="weatherDiv" style="max-width: 370px; padding: 4px 4px 4px 4px;">
+<img id="weatherImg">
+<div id="cityID"></div>
+<div id="weatherID"></div>
+<div id="descriptionID"></div>
+<div id="tempID"></div>
+<div id="humidityID"></div>
+<div id="windID"></div>
+<div id="cloudID"></div>
+</div>
+
         <br>
         <br class="clear">
         <hr>
 
         <h2>News</h2>
         Date: 01/01/2019
+        <br>
         <br>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
@@ -118,6 +198,7 @@ series one, series two, series three, series four, series five, gold pins, blind
         <h2>Spotlight</h2>
         Date: 01/01/2019
         <br>
+        <br>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -127,7 +208,7 @@ series one, series two, series three, series four, series five, gold pins, blind
         <hr>
 
         <!-- set up a div on the right side for a twitter feed (rss feed>)-->
-        <div id="twtFeed"> </div>
+        <!--<div id="twtFeed"> </div> -->
 
     </main>
 
